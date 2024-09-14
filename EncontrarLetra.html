@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Target Sistemas</title>
+    <style>
+        html, body {
+            height: 100%; 
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            background-color: #c1d9ef;
+        }
+        .container {
+            text-align: center;
+            margin-top: 40vh;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: 300px; 
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        footer {
+            font-size: 12px; 
+            text-align: center;
+            padding: 10px;
+            margin-top: auto; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contador de Letras 'a'</h1>
+        <input type="text" id="textoInput" placeholder="Digite uma string" />
+        <button onclick="contar()">Contar</button>
+        <div id="resultado"></div>
+    </div>
+
+    <footer>
+        <p>Dedenvolvido por Bruno Lins com intuito de entrega de um teste de logica juntamente com a Target Sistemas</p>
+    </footer>
+
+    <script>
+        function contar() {
+            const texto = document.getElementById('textoInput').value;
+            const resultadoDiv = document.getElementById('resultado');
+
+            // Convertendo o texto para minúsculas para contar 'a' e 'A'
+            const textoLower = texto.toLowerCase();
+
+            // Contando as ocorrências de 'a'
+            const ocorrencias = textoLower.split('a').length - 1;
+            
+
+            // Atualizando o resultado na página
+            resultadoDiv.textContent = `A letra 'a' aparece ${ocorrencias} vez(es) na string.`;
+        }
+    </script>
+</body>
+</html>
