@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Target Sistemas </title>
+    <style>
+        
+    html, body {
+    height: 100%; /* Garante que o body e html ocupem toda a altura da viewport */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    background-color: #96e7f9;
+}
+
+.container {
+    margin-top: 40vh;
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#resultado {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+footer {
+    font-size: 12px; 
+    text-align: center;
+    padding: 10px;
+    margin-top: auto; 
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verificador de Fibonacci</h1>
+        <input type="number" id="numeroInput" placeholder="Digite um número" />
+        <button onclick="verificarFibonacci()">Verificar</button>
+        <div id="resultado" class="result"></div>
+    </div>   
+
+</body>
+<footer>
+    <p>Dedenvolvido por Bruno Lins com intuito de entrega de um teste de logica juntamente com a Target Sistemas</p>
+</footer>
+
+<script>
+    function pertenceFibonacci(num) {
+        if (num < 0) return false; // Verifica se o número é negativo
+
+        function gerarFibonacci(max) {
+            const fibonacci = [0, 1]; // começa com os dois primeiros numeros da sequencia
+            while (true) {
+                const proximo = fibonacci[fibonacci.length - 1] + fibonacci[fibonacci.length - 2];
+                if (proximo > max) break;
+                fibonacci.push(proximo); // usa um loop para continuar calculando o proximo numero , que soma os dois ultimos numeros da sequencia
+            }
+            return fibonacci; //retorna o numero
+        }
+
+        const fibonacci2 = gerarFibonacci(num); // chama a função para obter a sequencia ate o numero fornecido
+        return fibonacci2.includes(num); // retorna true or false se o numero estiver, ou nao , incluido na sequencia
+    }
+
+    function verificarFibonacci() {
+        const numero = parseInt(document.getElementById('numeroInput').value, 10);// converte o numero para um inteiro
+        const resultadoDiv = document.getElementById('resultado'); // onde sera exibido o resultato
+
+        if (isNaN(numero)) {
+            resultadoDiv.textContent = 'Por favor, digite um número válido.';
+            return;
+        }// verifica se o valor é um numero, se nao for , retoanr um erro , em caso de NENHUM numero ser digitado 
+        if (numero<0){
+            resultadoDiv.textContent ='O numero é negativo e nao pertence a fibonacci';
+            return;
+        }
+
+        if (pertenceFibonacci(numero)) {
+            resultadoDiv.textContent = `${numero} pertence à sequência de Fibonacci.`;
+        } else {
+            resultadoDiv.textContent = `${numero} não pertence à sequência de Fibonacci.`;
+        } // exibe a mensagem de acordo com o esperado, se é pertencente ou nao ao fibonacci
+    }
+</script>
+</html>
